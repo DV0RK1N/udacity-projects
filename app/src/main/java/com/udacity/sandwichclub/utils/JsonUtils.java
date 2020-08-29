@@ -27,15 +27,18 @@ public class JsonUtils {
             sandwich.setMainName(nameObject.getString(MAIN_NAME));
             JSONArray alsoKnownAsJsonArray = nameObject.getJSONArray(ALSO_KNOWN_AS);
             List<String> alsoKnownAs = new ArrayList<>();
+
             for (int i = 0; i < alsoKnownAsJsonArray.length(); i++) {
                 alsoKnownAs.add(alsoKnownAsJsonArray.getString(i));
             }
+
             sandwich.setAlsoKnownAs(alsoKnownAs);
             sandwich.setPlaceOfOrigin(jsonObject.getString(PLACE_OF_ORIGIN));
             sandwich.setDescription(jsonObject.getString(DESCRIPTION));
             sandwich.setImage(jsonObject.getString(IMAGE));
             JSONArray ingredientsJsonArray = jsonObject.getJSONArray(INGREDIENTS);
             List<String> ingredients = new ArrayList<>();
+
             for (int i = 0; i < ingredientsJsonArray.length(); i++) {
                 ingredients.add(ingredientsJsonArray.getString(i));
             }

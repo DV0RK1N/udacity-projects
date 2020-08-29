@@ -11,9 +11,6 @@ public class Sandwich {
     private String image;
     private List<String> ingredients = null;
 
-    /**
-     * No args constructor for use in serialization
-     */
     public Sandwich() {
     }
 

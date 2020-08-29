@@ -21,6 +21,7 @@ public class JsonUtils {
     public static Sandwich parseSandwichJson(String json) {
 
         Sandwich sandwich = new Sandwich();
+        List<String> ingredients = new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(json);
             JSONObject nameObject = jsonObject.getJSONObject(NAME);
@@ -37,7 +38,7 @@ public class JsonUtils {
             sandwich.setDescription(jsonObject.getString(DESCRIPTION));
             sandwich.setImage(jsonObject.getString(IMAGE));
             JSONArray ingredientsJsonArray = jsonObject.getJSONArray(INGREDIENTS);
-            List<String> ingredients = new ArrayList<>();
+
 
             for (int i = 0; i < ingredientsJsonArray.length(); i++) {
                 ingredients.add(ingredientsJsonArray.getString(i));

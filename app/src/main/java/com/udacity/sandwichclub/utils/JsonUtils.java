@@ -23,15 +23,10 @@ public class JsonUtils {
         Sandwich sandwich = new Sandwich();
         try {
             JSONObject jsonObject = new JSONObject(json);
-
             JSONObject nameObject = jsonObject.getJSONObject(NAME);
-
             sandwich.setMainName(nameObject.getString(MAIN_NAME));
-
             JSONArray alsoKnownAsJsonArray = nameObject.getJSONArray(ALSO_KNOWN_AS);
-
             List<String> alsoKnownAs = new ArrayList<>();
-
             for (int i = 0; i < alsoKnownAsJsonArray.length(); i++) {
                 alsoKnownAs.add(alsoKnownAsJsonArray.getString(i));
             }

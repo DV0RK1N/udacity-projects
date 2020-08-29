@@ -14,6 +14,11 @@ import com.udacity.sandwichclub.utils.JsonUtils;
 import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
+    TextView alsoKnownAsTextView;
+    TextView ingredientsTextView;
+    TextView placeOfOriginTextView;
+    TextView descriptionTextView;
+    ImageView ingredientsIv;
 
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
@@ -23,7 +28,11 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        ImageView ingredientsIv = findViewById(R.id.image_iv);
+        alsoKnownAsTextView = findViewById(R.id.also_known_tv);
+        ingredientsTextView = findViewById(R.id.ingredients_tv);
+        placeOfOriginTextView = findViewById(R.id.origin_tv);
+        descriptionTextView = findViewById(R.id.description_tv);
+        ingredientsIv = findViewById(R.id.image_iv);
 
         Intent intent = getIntent();
         if (intent == null) {
@@ -61,33 +70,28 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void populateUI(Sandwich sandwich) {
-        TextView alsoKnownAsTextView = findViewById(R.id.also_known_tv);
-        TextView ingredientsTextView = findViewById(R.id.ingredients_tv);
-        TextView placeOfOriginTextView = findViewById(R.id.origin_tv);
-        TextView descriptionTextView = findViewById(R.id.description_tv);
-
-        StringBuilder alsoKnownSB = new StringBuilder();
-        List<String> alsoKnownList = sandwich.getAlsoKnownAs();
-        if(alsoKnownList.size() >0) {
-            for (int i = 0; i < alsoKnownList.size(); i++) {
-                alsoKnownSB.append(alsoKnownList.get(i));
-                if (i < alsoKnownList.size() - 1) {
-                    alsoKnownSB.append(", ");
+        StringBuilder alsoKnownStringBuilder = new StringBuilder();
+        List<String> alsoKnownAsList = sandwich.getAlsoKnownAs();
+        if (alsoKnownAsList.size() > 0) {
+            for (int i = 0; i < alsoKnownAsList.size(); i++) {
+                alsoKnownStringBuilder.append(alsoKnownAsList.get(i));
+                if (i < alsoKnownAsList.size() - 1) {
+                    alsoKnownStringBuilder.append(", ");
                 }
             }
-            alsoKnownAsTextView.setText(alsoKnownSB.toString());
+            alsoKnownAsTextView.setText(alsoKnownStringBuilder.toString());
         }
 
-        StringBuilder ingredientsSB = new StringBuilder();
-        List<String> ingredientsList= sandwich.getIngredients();
-        for(int i= 0; i< ingredientsList.size(); i++){
-            ingredientsSB.append(ingredientsList.get(i));
-            if(i < ingredientsList.size()-1){
-                ingredientsSB.append("\n");
+        StringBuilder ingredientsStringBuilder = new StringBuilder();
+        List<String> ingredientsList = sandwich.getIngredients();
+        for (int i = 0; i < ingredientsList.size(); i++) {
+            ingredientsStringBuilder.append(ingredientsList.get(i));
+            if (i < ingredientsList.size() - 1) {
+                ingredientsStringBuilder.append("\n");
             }
         }
 
-        ingredientsTextView.setText(ingredientsSB.toString());
+        ingredientsTextView.setText(ingredientsStringBuilder.toString());
         placeOfOriginTextView.setText(sandwich.getPlaceOfOrigin());
         descriptionTextView.setText(sandwich.getDescription());
     }

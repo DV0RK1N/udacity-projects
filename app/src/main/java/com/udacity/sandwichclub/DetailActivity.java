@@ -72,25 +72,20 @@ public class DetailActivity extends AppCompatActivity {
     private void populateUI(Sandwich sandwich) {
         StringBuilder alsoKnownStringBuilder = new StringBuilder();
         List<String> alsoKnownAsList = sandwich.getAlsoKnownAs();
-        if (alsoKnownAsList.size() > 0) {
-            for (int i = 0; i < alsoKnownAsList.size(); i++) {
-                alsoKnownStringBuilder.append(alsoKnownAsList.get(i));
-                if (i < alsoKnownAsList.size() - 1) {
-                    alsoKnownStringBuilder.append(", ");
-                }
-            }
-            alsoKnownAsTextView.setText(alsoKnownStringBuilder.toString());
-        }
 
         StringBuilder ingredientsStringBuilder = new StringBuilder();
         List<String> ingredientsList = sandwich.getIngredients();
-        for (int i = 0; i < ingredientsList.size(); i++) {
-            ingredientsStringBuilder.append(ingredientsList.get(i));
-            if (i < ingredientsList.size() - 1) {
-                ingredientsStringBuilder.append("\n");
-            }
+
+        for (String b : alsoKnownAsList) {
+            alsoKnownStringBuilder.append(b).append("\n");
         }
 
+        for (String x : ingredientsList) {
+            ingredientsStringBuilder.append(x).append("\n");
+        }
+
+
+        alsoKnownAsTextView.setText(alsoKnownStringBuilder.toString());
         ingredientsTextView.setText(ingredientsStringBuilder.toString());
         placeOfOriginTextView.setText(sandwich.getPlaceOfOrigin());
         descriptionTextView.setText(sandwich.getDescription());
